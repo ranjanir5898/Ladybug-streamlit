@@ -1,0 +1,13 @@
+# selecting 7 categorical features from the dataframe
+import joblib
+from sklearn.preprocessing import OrdinalEncoder
+
+new_fea_df = feature_df[['Type_of_collision','Age_band_of_driver','Sex_of_driver',
+    'Educational_level','Service_year_of_vehicle','Day_of_week','Area_accident_occured']]
+
+oencoder2 = OrdinalEncoder()
+encoded_df3 = pd.DataFrame(oencoder2.fit_transform(new_fea_df))
+encoded_df3.columns = new_fea_df.columns
+
+# save the ordinal encoder object for inference pipeline
+joblib.dump(oencoder2, "ordinal_encoder2.joblib")
